@@ -22,16 +22,19 @@ public class DBadapter {
     private static final String CURSO = "curso";
     private static final String CURSOT = "cursot";
     private static final String DESPACHO = "despacho";
+    private static final String NOTA = "nota";
 
     private static final String DATABASE_CREATE_ESTUDIANTES = "CREATE TABLE " + DATABASE_TABLE_ESTUDIANTES + " " +
             "(_id integer primary key autoincrement, name text, age integer, ciclo text," +
-            " curso text);";
+            " curso text, nota integer);";
     private static final String DATABASE_CREATE_PROFESORES = "CREATE TABLE " + DATABASE_TABLE_PROFESORES + " " +
             "(_id integer primary key autoincrement, name text, age integer, ciclo text," +
-            " curso text);";
+            " curso text, despacho text);";
 
     private static final String DATABASE_DROP_PROFESORES = "DROP TABLE IF EXISTS " + DATABASE_TABLE_PROFESORES + ";";
     private static final String DATABASE_DROP_ESTUDIANTES = "DROP TABLE IF EXISTS " + DATABASE_TABLE_ESTUDIANTES + ";";
+
+    private static final String DROP_DATABASE = "DROP DATABASE " + DATABASE_NAME + ";";
 
     //Contexto ose la aplicación que usa la base de datos
     private final Context context;
