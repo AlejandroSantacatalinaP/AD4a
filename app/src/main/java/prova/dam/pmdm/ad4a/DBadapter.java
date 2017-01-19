@@ -1,5 +1,6 @@
 package prova.dam.pmdm.ad4a;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
@@ -55,6 +56,47 @@ public class DBadapter {
         } catch (SQLiteException e) {
             db = dbHelper.getReadableDatabase();
         }
+    }
+
+    public void borrarAlumno (int i){
+
+        db.execSQL("DELETE FROM "+DATABASE_TABLE_ESTUDIANTES+" WHERE id="+i);
+
+    }
+
+    public void borrarProfesor (int i){
+
+        db.execSQL("DELETE FROM "+DATABASE_TABLE_PROFESORES+" WHERE id="+i);
+
+
+    }
+
+    public long insertarAlumno(String n) {
+        long aux;
+        //Creamos un nuevo registro de valores a insertar
+        ContentValues newValues = new ContentValues();
+        //Asignamos los valores en este caso todos serán null o vacío menos el nombre
+        newValues.put(NAME, n);
+        newValues.put(AGE, 0);
+        newValues.put(CICLO, 0);
+        newValues.put(CURSOT, 0);
+        newValues.put(DESPACHO, 0);
+        aux = db.insert(DATABASE_TABLE_PROFESORES, null, newValues);
+        return aux;
+    }
+
+    public long insertarProfesor(String n){
+        long aux;
+        //Creamos un nuevo registro de valores a insertar
+        ContentValues newValues = new ContentValues();
+        //Asignamos los valores en este caso todos serán null o vacío menos el nombre
+        newValues.put(NAME,n);
+        newValues.put(AGE,0);
+        newValues.put(CICLO,0);
+        newValues.put(CURSO,0);
+        newValues.put(NOTA,0);
+        aux = db.insert(DATABASE_TABLE_ESTUDIANTES,null,newValues);
+        return aux;
     }
 
     private static class MyDbHelper extends SQLiteOpenHelper {

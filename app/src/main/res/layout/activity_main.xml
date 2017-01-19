@@ -1,16 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="prova.dam.pmdm.ad4a.MainActivity">
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="prova.dam.pmdm.ad4a.MainActivity">
 
-    <TextView
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:ems="10"
+    android:id="@+id/talumno"
+    android:layout_alignParentTop="true"
+    android:layout_centerHorizontal="true"
+    android:hint="Alumno" />
+
+<Button
+    android:text="AÑADIR ALUMNO"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/balumno"
+    android:layout_below="@+id/talumno"
+    android:layout_alignParentStart="true"
+    android:onClick="gestionAlumno"
+    />
+
+<EditText
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:inputType="textPersonName"
+    android:ems="10"
+    android:id="@+id/tprofesor"
+    android:layout_below="@+id/balumno"
+    android:layout_centerHorizontal="true"
+    android:hint="Profesor" />
+
+<Button
+    android:text="AÑADIR PROFESOR"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/tprofesor"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/bprofesor"
+    android:onClick="gestionProfesor"
+    />
+
+<Switch
+    android:text="Borrar"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/sborrar"
+    android:layout_alignParentBottom="true"
+    android:layout_alignParentEnd="true" />
+
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/result"
+        android:layout_below="@+id/bprofesor"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/sborrar"
+        android:text="Resultado" />
+
 </RelativeLayout>
