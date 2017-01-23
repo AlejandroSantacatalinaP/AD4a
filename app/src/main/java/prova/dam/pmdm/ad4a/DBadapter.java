@@ -21,15 +21,14 @@ public class DBadapter {
     private static final String AGE = "age";
     private static final String CICLO = "ciclo";
     private static final String CURSO = "curso";
-    private static final String CURSOT = "cursot";
     private static final String DESPACHO = "despacho";
     private static final String NOTA = "nota";
 
-    private static final String DATABASE_CREATE_ESTUDIANTES = "CREATE TABLE " + DATABASE_TABLE_ESTUDIANTES + " " +
-            "(_id integer primary key autoincrement, name text, age integer, ciclo text," +
+    private static final String DATABASE_CREATE_ESTUDIANTES = "CREATE TABLE " + DATABASE_TABLE_ESTUDIANTES +
+            " (_id integer primary key autoincrement, name text, age integer, ciclo text," +
             " curso text, nota integer);";
-    private static final String DATABASE_CREATE_PROFESORES = "CREATE TABLE " + DATABASE_TABLE_PROFESORES + " " +
-            "(_id integer primary key autoincrement, name text, age integer, ciclo text," +
+    private static final String DATABASE_CREATE_PROFESORES = "CREATE TABLE " + DATABASE_TABLE_PROFESORES +
+            " (_id integer primary key autoincrement, name text, age integer, ciclo text," +
             " curso text, despacho text);";
 
     private static final String DATABASE_DROP_PROFESORES = "DROP TABLE IF EXISTS " + DATABASE_TABLE_PROFESORES + ";";
@@ -59,45 +58,47 @@ public class DBadapter {
     }
 
     public void borrarAlumno (int i){
-
+        open();
         db.execSQL("DELETE FROM "+DATABASE_TABLE_ESTUDIANTES+" WHERE id="+i);
 
     }
 
     public void borrarProfesor (int i){
-
-        db.execSQL("DELETE FROM "+DATABASE_TABLE_PROFESORES+" WHERE id="+i);
+        open();
+       db.execSQL("DELETE FROM "+DATABASE_TABLE_PROFESORES+" WHERE id="+i);
 
 
     }
 
     public long insertarAlumno(String n) {
-        long aux;
+        String i="null";
         //Creamos un nuevo registro de valores a insertar
         ContentValues newValues = new ContentValues();
         //Asignamos los valores en este caso todos serán null o vacío menos el nombre
         newValues.put(NAME, n);
-        newValues.put(AGE, 0);
-        newValues.put(CICLO, 0);
-        newValues.put(CURSOT, 0);
-        newValues.put(DESPACHO, 0);
-        aux = db.insert(DATABASE_TABLE_PROFESORES, null, newValues);
-        return aux;
+        newValues.put(AGE, i);
+        newValues.put(CICLO, i);
+        newValues.put(CURSO, i);
+        newValues.put(NOTA, i);
+        open();
+        return db.insert(DATABASE_TABLE_ESTUDIANTES, null, newValues);
     }
 
     public long insertarProfesor(String n){
-        long aux;
+        String i="null";
         //Creamos un nuevo registro de valores a insertar
         ContentValues newValues = new ContentValues();
         //Asignamos los valores en este caso todos serán null o vacío menos el nombre
         newValues.put(NAME,n);
-        newValues.put(AGE,0);
-        newValues.put(CICLO,0);
-        newValues.put(CURSO,0);
-        newValues.put(NOTA,0);
-        aux = db.insert(DATABASE_TABLE_ESTUDIANTES,null,newValues);
-        return aux;
+        newValues.put(AGE,i);
+        newValues.put(CICLO,i);
+        newValues.put(CURSO,i);
+        newValues.put(DESPACHO,i);
+        open();
+        return db.insert(DATABASE_TABLE_PROFESORES,null,newValues);
     }
+
+    public boolean deleteDatabase() {return context.deleteDatabase(DATABASE_NAME);}
 
     private static class MyDbHelper extends SQLiteOpenHelper {
 
@@ -107,12 +108,15 @@ public class DBadapter {
 
         @Override
         public void onCreate(SQLiteDatabase db) {
-
+            db.execSQL(DATABASE_CREATE_ESTUDIANTES);
+            db.execSQL(DATABASE_CREATE_PROFESORES);
         }
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+            db.execSQL(DATABASE_DROP_ESTUDIANTES);
+            db.execSQL(DATABASE_DROP_PROFESORES);
+            onCreate(db);
         }
 
     }

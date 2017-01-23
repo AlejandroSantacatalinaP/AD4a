@@ -27,7 +27,6 @@ tools:context="prova.dam.pmdm.ad4a.MainActivity">
     android:id="@+id/balumno"
     android:layout_below="@+id/talumno"
     android:layout_alignParentStart="true"
-    android:onClick="gestionAlumno"
     />
 
 <EditText
@@ -47,7 +46,6 @@ tools:context="prova.dam.pmdm.ad4a.MainActivity">
     android:layout_below="@+id/tprofesor"
     android:layout_centerHorizontal="true"
     android:id="@+id/bprofesor"
-    android:onClick="gestionProfesor"
     />
 
 <Switch
@@ -57,14 +55,5 @@ tools:context="prova.dam.pmdm.ad4a.MainActivity">
     android:id="@+id/sborrar"
     android:layout_alignParentBottom="true"
     android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/result"
-        android:layout_below="@+id/bprofesor"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/sborrar"
-        android:text="Resultado" />
 
 </RelativeLayout>
